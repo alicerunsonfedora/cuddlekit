@@ -92,6 +92,13 @@ struct ContactList: KDLBidirectionalSerializable {
     let children = try serializer.childDeserializationContainer()
     contacts = try children.deserialize(Person.self, forChildrenNamed: "contact")
   }
+
+  func serialize(to serializer: KDLSerializer) throws(KDLSerializationError) {
+    let children = try serializer.childSerializationContainer()
+    for child in children {
+      try children.serialize(child, withName: "contact")
+    }
+  }
 }
 ```
 
