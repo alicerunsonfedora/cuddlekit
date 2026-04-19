@@ -1,0 +1,3 @@
+[submodule "Sources/CKDL"]
+	path = Sources/CKDL
+	url = https://github.com/tjol/ckdl
