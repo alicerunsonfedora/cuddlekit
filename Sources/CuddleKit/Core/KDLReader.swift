@@ -94,7 +94,7 @@ public class KDLReader {
             throw .invalidNodeStart
         }
         var nodeArguments = [KDLValue]()
-        var nodeProperties = [KDLNode.PropertyKey: KDLValue]()
+        var nodeProperties = KDLPropertyCollection()
         var childrenNodes = [KDLNode]()
 
         #if Embedded && hasFeature(Embedded)

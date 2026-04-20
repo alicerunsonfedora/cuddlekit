@@ -5,19 +5,20 @@
 //  Created by Marquis Kurt on 17-04-2026.
 //
 
-#if Embedded
-    extension String.UTF8View: @retroactive Equatable, @retroactive Hashable {
-        public static func == (lhs: Self, rhs: Self) -> Bool {
-            lhs.elementsEqual(rhs)
-        }
+extension String.UTF8View: @retroactive Equatable, @retroactive Hashable {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.elementsEqual(rhs)
+    }
 
-        public func hash(into hasher: inout Hasher) {
-            hasher.combine(0xFF as UInt8)
-            for element in self {
-                hasher.combine(element)
-            }
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(0xFF as UInt8)
+        for value in self {
+            hasher.combine(value)
         }
     }
+}
+
+#if Embedded
     extension String {
         /// Whether the string has no content.
         public var isEmpty: Bool { utf8.isEmpty }
@@ -84,5 +85,4 @@
             self.firstIndex { $0.equals(value) }
         }
     }
-
 #endif

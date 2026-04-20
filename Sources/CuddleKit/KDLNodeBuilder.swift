@@ -44,7 +44,7 @@ extension KDLNode {
     public init(
         _ name: String,
         arguments: [KDLValue] = [],
-        properties: [KDLNode.PropertyKey: KDLValue] = [:],
+        properties: KDLPropertyCollection = [:],
         @KDLNodeBuilder builder: () -> [KDLNode]
     ) {
         self.init(named: name, arguments: arguments, properties: properties, children: builder())
@@ -53,7 +53,7 @@ extension KDLNode {
     public init(
         _ name: String,
         _ arguments: KDLValue...,
-        properties: [KDLNode.PropertyKey: KDLValue] = [:],
+        properties: KDLPropertyCollection = [:],
         @KDLNodeBuilder builder: () -> [KDLNode]
     ) {
         self.init(named: name, arguments: arguments, properties: properties, children: builder())

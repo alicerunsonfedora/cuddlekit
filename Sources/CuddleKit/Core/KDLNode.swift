@@ -6,20 +6,15 @@
 //
 
 public struct KDLNode: Equatable, Sendable {
-    #if Embedded && hasFeature(Embedded)
-        public typealias PropertyKey = String.UTF8View
-    #else
-        public typealias PropertyKey = String
-    #endif
     public var name: String
     public var arguments: [KDLValue]
-    public var properties: [PropertyKey: KDLValue]
+    public var properties: KDLPropertyCollection
     public var children: [KDLNode]
 
     public init(
         named name: String,
         arguments: [KDLValue] = [],
-        properties: [PropertyKey: KDLValue] = [:],
+        properties: KDLPropertyCollection = [:],
         children: [KDLNode] = []
     ) {
         self.name = name
@@ -31,7 +26,7 @@ public struct KDLNode: Equatable, Sendable {
     public init(
         named name: String,
         _ arguments: KDLValue...,
-        properties: [PropertyKey: KDLValue] = [:],
+        properties: KDLPropertyCollection = [:],
         children: [KDLNode] = []
     ) {
         self.name = name
