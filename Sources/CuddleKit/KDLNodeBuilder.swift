@@ -5,6 +5,16 @@
 //  Created by Marquis Kurt on 15-04-2026.
 //
 
+/// A result builder used to create node trees more efficiently.
+///
+/// This result builder can be used to make node trees in a manner that more closely reflects a KDL document. For
+/// example, the ``KDLNode`` accepts a builder closure for this purpose:
+/// ```swift
+/// let myNode = KDLNode("contacts") {
+///     KDLNode(named: "contact", arguments: ["alice"], properties: ["age": 45])
+///     KDLNode(named: "contact", arguments: ["bob"], properties: ["age": 27])
+/// }
+/// ```
 @resultBuilder
 public struct KDLNodeBuilder {
     public static func buildBlock(_ components: [KDLNode]...) -> [KDLNode] {
@@ -41,6 +51,11 @@ public struct KDLNodeBuilder {
 }
 
 extension KDLNode {
+    /// Create a node by building its hierarchy.
+    /// - Parameter name: The name of the node.
+    /// - Parameter arguments: The node's ordered arguments.
+    /// - Parameter properties: The node's properties.
+    /// - Parameter builder: A closure that returns the node's children.
     public init(
         _ name: String,
         arguments: [KDLValue] = [],
@@ -50,6 +65,11 @@ extension KDLNode {
         self.init(named: name, arguments: arguments, properties: properties, children: builder())
     }
 
+    /// Create a node by building its hierarchy.
+    /// - Parameter name: The name of the node.
+    /// - Parameter arguments: The node's ordered arguments.
+    /// - Parameter properties: The node's properties.
+    /// - Parameter builder: A closure that returns the node's children.
     public init(
         _ name: String,
         _ arguments: KDLValue...,
@@ -61,6 +81,9 @@ extension KDLNode {
 }
 
 extension KDLDocument {
+    /// Create a KDL document by building its node hierarchy.
+    /// - Parameter version: The version of the KDL specification this document represents.
+    /// - Parameter builder: A closure that returns the document's node hierarchy.
     public init(kdlVersion version: Int, @KDLNodeBuilder builder: () -> [KDLNode]) {
         self.init(kdlVersion: version, nodes: builder())
     }

@@ -18,11 +18,13 @@ public struct KDLPropertyCollection: Equatable, Sendable {
         self.properties = [:]
     }
 
+    /// Retrieve the value associated with a given key.
     public subscript(key: String) -> KDLValue? {
         get { return properties[key.utf8] }
         set { self.properties[key.utf8] = newValue }
     }
 
+    /// Retrieve the value associated with a given key.
     public subscript(key: String.UTF8View) -> KDLValue? {
         get { return properties[key] }
         set { self.properties[key] = newValue }

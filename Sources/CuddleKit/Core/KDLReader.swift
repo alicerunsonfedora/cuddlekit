@@ -3,23 +3,41 @@
 
 import CKDL
 
+/// A type that creates KDL document trees by reading values.
 public class KDLReader {
+    /// An enumeration representing the errors that can be thrown when reading a value.
     public enum ReaderError: Error {
+        /// An error occurred when parsing the document.
         case parseError
+
+        /// The reader entered an invalid starting node state.
         case invalidNodeStart
+
+        /// The reader encountered an invalid document version.
+        ///
+        /// This error can also be thrown when the reader has no options regarding which versions should be considered
+        /// for parsing.
         case invalidDocumentVersion
     }
 
+    /// An enumeration representing the options that can be provided to a reader.
     public enum ReaderOption: Equatable, Sendable {
-        case parse_v1, parse_v2
+        /// Parse documents that follow the KDLv1 specification.
+        case parse_v1
+
+        /// Parse documents that follow the KDLv2 specification.
+        case parse_v2
     }
 
+    /// The options used to configure this reader.
     public var options: Set<ReaderOption>
 
     public init() {
         self.options = [.parse_v1, .parse_v2]
     }
 
+    /// Read a string value as a KDL document and generate a node tree.
+    /// - Parameter string: The string value to read.
     public func read(_ string: String) throws(ReaderError) -> KDLDocument {
         if !options.contains(.parse_v2), !options.contains(.parse_v1) {
             throw .invalidDocumentVersion

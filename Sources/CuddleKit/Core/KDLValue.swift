@@ -13,11 +13,15 @@ extension String {
     }
 }
 
+/// An enumeration representing an individual value represented by KDL.
 public enum KDLValue: Equatable, Sendable {
+    /// A value with a type annotation attached.
     case typed(KDLTypedValue)
+
+    /// An untyped value.
     case untyped(KDLUntypedValue)
 
-    public init?(ckdlVal value: kdl_value) {
+    init?(ckdlVal value: kdl_value) {
         guard let untypedValue = KDLUntypedValue(ckdlVal: value) else { return nil }
         if value.type_annotation.len > 0 {
             self = .typed(KDLTypedValue(annotation: String(kdlString: value.type_annotation), value: untypedValue))

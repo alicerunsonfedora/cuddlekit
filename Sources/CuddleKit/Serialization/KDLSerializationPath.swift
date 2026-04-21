@@ -69,13 +69,8 @@ public struct KDLSerializationPath: Equatable, Sendable {
 extension KDLSerializationPath: Collection {
     public typealias Element = Node
 
-    public var startIndex: [Node].Index {
-        nodes.startIndex
-    }
-
-    public var endIndex: [Node].Index {
-        nodes.endIndex
-    }
+    public var startIndex: [Node].Index { nodes.startIndex }
+    public var endIndex: [Node].Index { nodes.endIndex }
 
     public func index(after i: Int) -> Int {
         nodes.index(after: i)
