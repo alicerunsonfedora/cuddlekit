@@ -4,6 +4,9 @@ With **CuddleKit**, you can work with structures represented in the Cuddly
 Document Language (KDL) format. Create node trees from strings, or
 serialize/deserialize existing structures.
 
+> Important: CuddleKit is a work-in-progress library and is not production
+> ready. Use at your own risk!
+
 ## Getting started
 
 To start using CuddleKit, add it to your package's dependencies:
