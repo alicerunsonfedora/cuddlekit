@@ -1,0 +1,15 @@
+{
+  "originHash" : "6d51c250f616caa9a3a9648f9fdf7723a6a527e51fd2369445d0d6b5c63bd58e",
+  "pins" : [
+    {
+      "identity" : "playdatekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://source.marquiskurt.net/PDUniverse/PlaydateKit.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "485b25329a2552222d15564ecb68a4eeb3d901b7"
+      }
+    }
+  ],
+  "version" : 3
+}
