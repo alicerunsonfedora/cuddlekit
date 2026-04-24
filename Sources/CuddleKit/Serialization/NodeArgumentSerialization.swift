@@ -6,10 +6,6 @@
 //
 
 /// A container used to serialize and deserialize unkeyed arguments in a KDL node.
-///
-/// Arguments are treated as an ordered list of values. When calling any of the serialization and deserialization
-/// methods, the container automatically advances to the next available argument. To know whether the container can
-/// keep deserializing arguments, use the ``canDeserializeNextArgument`` property.
 public final class KDLNodeArgumentSerializationContainer {
     private var node: KDLNode
     private var serializationPath: KDLSerializationPath

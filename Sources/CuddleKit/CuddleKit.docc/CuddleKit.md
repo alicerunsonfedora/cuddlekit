@@ -13,3 +13,12 @@ serialize/deserialize existing structures.
 - ``KDLValue``
 - ``KDLNode``
 - ``KDLDocument``
+
+### Reading and serializing KDL documents
+
+- ``KDLReader``
+- <doc:Serialization>
+
+### Embedded support
+
+- ``CuddleKitError``
