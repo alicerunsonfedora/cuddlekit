@@ -9,11 +9,7 @@ final class Game: PlaydateGame {
     init() {
         var playerString: String
         do {
-            let stat = try File.stat(path: "players.kdl")
-            let fileSize = stat.size
-            PDReportDebug("Received file size of '\(fileSize) bytes' for players.kdl.")
-            let file = try File.open(path: "players.kdl", mode: .read)
-            playerString = String(reading: file, ofLength: Int(fileSize))
+            playerString = try String(contentsOf: "players.kdl")
         } catch {
             PDReportError("Couldn't read the players.kdl file from the game's bundle.")
             self.controller = PlayerListViewController(players: [])

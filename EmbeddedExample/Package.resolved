@@ -1,5 +1,5 @@
 {
-  "originHash" : "37b2af6b0a9f9be53b817617d5a5b8c39074f0579029eb3a01a6adc643418b14",
+  "originHash" : "66cf7554f62bc7d34eb4eb1ed3de8df5f48f7af2c9973cd37f154347ad9825a2",
   "pins" : [
     {
       "identity" : "pdkutils",
@@ -7,7 +7,7 @@
       "location" : "https://source.marquiskurt.net/PDUniverse/PDKUtils.git",
       "state" : {
         "branch" : "main",
-        "revision" : "1d99009376a408b1dd76bee9b72fc89aa8663785"
+        "revision" : "de0adbfdb2a33061e234b069524cf9831e136f32"
       }
     },
     {
