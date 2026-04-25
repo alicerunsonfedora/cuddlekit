@@ -29,25 +29,57 @@ enum Bughorse: String, KDLValueDeserializable {
             throw .typeValueMismatch(KDLSerializationPath())
         }
     }
+
+    var displayName: String {
+        switch self {
+        case .chrysalis: "Chrysalis"
+        case .thorax: "Thorax"
+        case .ocellus: "Ocellus"
+        case .pharynx: "Pharynx"
+        }
+    }
+}
+
+struct PlayerContainer: KDLDeserializable {
+    var players: [Player]
+
+    init(from serializer: KDLSerializer) throws(KDLDeserializationError) {
+        var players = [Player]()
+        let children = try serializer.childDeserializationContainer()
+        while children.canSerializeOrDeserializeNextChild {
+            players.append(try children.deserializeNextChild(Player.self))
+        }
+        self.players = players
+    }
 }
 
 struct Player: KDLDeserializable {
+    var username: String
     var name: String
     var character: Bughorse
     var initialStat: Int64
 
-    init(name: String, character: Bughorse, initialStat: Int64) {
-        self.name = name
-        self.character = character
-        self.initialStat = initialStat
+    var hasDisplayName: Bool {
+        !name.utf8.elementsEqual(username.utf8)
     }
 
     init(from serializer: KDLSerializer) throws(KDLDeserializationError) {
+        username = serializer.name
+
         let arguments = try serializer.unkeyedDeserializationContainer()
-        name = try arguments.deserialize(String.self)
+        if arguments.canDeserializeNextArgument {
+            name = try arguments.deserialize(String.self)
+        } else {
+            // Provide a fallback if there's no argument.
+            name = serializer.name
+        }
 
         let properties = try serializer.keyedDeserializationContainer()
         character = try properties.deserialize(Bughorse.self, forKey: "character")
-        initialStat = try properties.deserialize(Int64.self, forKey: "stat")
+        if let initialStat = try properties.deserializeIfPresent(Int64.self, forKey: "stat") {
+            self.initialStat = initialStat
+        } else {
+            self.initialStat = 5
+        }
     }
 }

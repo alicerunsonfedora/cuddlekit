@@ -1,6 +1,15 @@
 {
-  "originHash" : "6d51c250f616caa9a3a9648f9fdf7723a6a527e51fd2369445d0d6b5c63bd58e",
+  "originHash" : "37b2af6b0a9f9be53b817617d5a5b8c39074f0579029eb3a01a6adc643418b14",
   "pins" : [
+    {
+      "identity" : "pdkutils",
+      "kind" : "remoteSourceControl",
+      "location" : "https://source.marquiskurt.net/PDUniverse/PDKUtils.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "1d99009376a408b1dd76bee9b72fc89aa8663785"
+      }
+    },
     {
       "identity" : "playdatekit",
       "kind" : "remoteSourceControl",

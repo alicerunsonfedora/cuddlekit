@@ -8,6 +8,7 @@ DerivedData/
 .netrc
 
 .nova/
+.zed/
 
 # Leftovers from Playdate SDK
 Data/
