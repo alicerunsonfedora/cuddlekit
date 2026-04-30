@@ -1,5 +1,5 @@
 players {
-    ctan character="thorax" stat=12
-    nocmul51 "Lorelei Weiss" character="pharynx" stat=13
-    rnero "Renzo Nero" character="chrysalis" stat=77
+    ctan character="thorax" stat=(int)12
+    nocmul51 "Lorelei Weiss" character="pharynx" stat=(int)13
+    rnero "Renzo Nero" character="chrysalis" stat=(int)77
 }
