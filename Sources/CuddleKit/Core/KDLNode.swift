@@ -75,6 +75,29 @@ public struct KDLNode: Equatable, Sendable {
         get { return self.children[index] }
         set { self.children[index] = newValue }
     }
+
+    /// Traverse the node tree at the current position through the specified path.
+    ///
+    /// This method is typically used for fast navigation. For example, the following call looks for a node called
+    /// `parameters` at the end of the tree, going through `scripts` and `run` first.
+    ///
+    /// ```swift
+    /// let myChild = node.traverse(through: ["scripts", "run", "parameters"])
+    /// ```
+    ///
+    /// If a node with any of the names in the path cannot be found, this method returns nil.
+    /// - Parameter path: The path from the current position to the expected child node.
+    public func traverse(through path: [String]) -> KDLNode? {
+        guard !path.isEmpty else { return nil }
+        var child = self
+        for index in path.indices {
+            guard let newChild = child[child: path[index]] else {
+                return nil
+            }
+            child = newChild
+        }
+        return child
+    }
 }
 
 /// A type representing a KDL document.
