@@ -1,3 +1,5 @@
+<img src="Sources/CuddleKit/CuddleKit.docc/Resources/CuddleKitLogo.svg" align=center width=128 />
+
 # CuddleKit
 
 With **CuddleKit**, you can work with structures represented in the Cuddly
@@ -134,6 +136,12 @@ restrictions. This might be improved in the future.
 
 CuddleKit is free and open-source software licensed under the MIT license.
 For more information on your rights, refer to the LICENSE.txt file.
+
+The CuddleKit logo is licensed under a [Creative Commons
+Attribution-ShareAlike 4.0 International License][cc], with the original
+logo created by Timothy Merritt (@timmybytes).
+
+[cc]: http://creativecommons.org/licenses/by-sa/4.0/
 
 CuddleKit is made possible by the following open-source software:
 
