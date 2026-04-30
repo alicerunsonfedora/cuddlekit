@@ -29,6 +29,38 @@ public enum KDLValue: Equatable, Sendable {
             self = .untyped(untypedValue)
         }
     }
+
+    public init(_ string: String, ofType annotation: String? = nil) {
+        guard let annotation else {
+            self = .untyped(.string(string))
+            return
+        }
+        self = .typed(KDLTypedValue(annotation: annotation, value: .string(string)))
+    }
+
+    public init(_ integer: Int64, ofType annotation: String? = nil) {
+        guard let annotation else {
+            self = .untyped(.number(.integer(integer)))
+            return
+        }
+        self = .typed(KDLTypedValue(annotation: annotation, value: .number(.integer(integer))))
+    }
+
+    public init(_ double: Double, ofType annotation: String? = nil) {
+        guard let annotation else {
+            self = .untyped(.number(.floating(double)))
+            return
+        }
+        self = .typed(KDLTypedValue(annotation: annotation, value: .number(.floating(double))))
+    }
+
+    public init(_ boolean: Bool, ofType annotation: String? = nil) {
+        guard let annotation else {
+            self = .untyped(.boolean(boolean))
+            return
+        }
+        self = .typed(KDLTypedValue(annotation: annotation, value: .boolean(boolean)))
+    }
 }
 
 extension KDLValue {

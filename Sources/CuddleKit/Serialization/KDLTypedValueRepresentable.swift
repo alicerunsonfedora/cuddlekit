@@ -34,7 +34,7 @@ extension KDLTypedValueRepresentable {
 
 extension FixedWidthInteger where Self: KDLTypedValueRepresentable {
     public func serialize() throws(KDLSerializationError) -> KDLValue {
-        .typed(KDLTypedValue(annotation: Self.kdlPreferredAnnotation, value: .number(.integer(Int64(self)))))
+        KDLValue(Int64(self), ofType: Self.kdlPreferredAnnotation)
     }
 }
 
@@ -63,7 +63,7 @@ extension FixedWidthInteger where Self: KDLTypedValueRepresentable {
 
 extension BinaryFloatingPoint where Self: KDLTypedValueRepresentable {
     public func serialize() throws(KDLSerializationError) -> KDLValue {
-        .typed(KDLTypedValue(annotation: Self.kdlPreferredAnnotation, value: .number(.floating(Double(self)))))
+        KDLValue(Double(self), ofType: Self.kdlPreferredAnnotation)
     }
 }
 
