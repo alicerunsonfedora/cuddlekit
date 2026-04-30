@@ -1,6 +1,7 @@
-<img src="Sources/CuddleKit/CuddleKit.docc/Resources/CuddleKitLogo.svg" align=center width=128 />
-
-# CuddleKit
+<div align="center">
+    <img src="Sources/CuddleKit/CuddleKit.docc/Resources/CuddleKitLogo.svg" width=128 />
+    <h1>CuddleKit</h1>
+</div>
 
 With **CuddleKit**, you can work with structures represented in the Cuddly
 Document Language (KDL) format. Create node trees from strings, or
