@@ -57,7 +57,7 @@ struct Player: KDLDeserializable {
     var username: String
     var name: String
     var character: Bughorse
-    var initialStat: Int64
+    var initialStat: Int
 
     var hasDisplayName: Bool {
         !name.utf8.elementsEqual(username.utf8)
@@ -76,7 +76,7 @@ struct Player: KDLDeserializable {
 
         let properties = try serializer.keyedDeserializationContainer()
         character = try properties.deserialize(Bughorse.self, forKey: "character")
-        if let initialStat = try properties.deserializeIfPresent(Int64.self, forKey: "stat") {
+        if let initialStat = try properties.deserializeIfPresent(Int.self, forKey: "stat") {
             self.initialStat = initialStat
         } else {
             self.initialStat = 5
