@@ -136,6 +136,7 @@ enum Bughorse: String, KDLValueDeserializable {
 - ``KDLValueSerializable``
 - ``KDLValueDeserializable``
 - ``KDLValueSerializationContainer``
+- ``KDLTypedValueRepresentable``
 
 ### Serialization containers
 
