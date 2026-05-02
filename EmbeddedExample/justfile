@@ -1,0 +1,8 @@
+build:
+    swiftly run swift package pdc -v --extra-device-o-files-build-dirs CKDL.build/src
+
+run: build
+    PlaydateSimulator .build/plugins/PDCPlugin/outputs/CuddleKitDemo.pdx
+
+clean:
+    rm -rf .build

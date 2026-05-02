@@ -23,7 +23,7 @@ let package = Package(
         .library(name: "CuddleKitDemo", type: xcode ? nil : .dynamic, targets: ["CuddleKitDemo"])
     ],
     dependencies: [
-        .package(name: "CuddleKit", path: "../", traits: ["Embedded"]),
+        .package(name: "CuddleKit", path: "../", traits: ["Playdate"]),
         .package(url: "https://source.marquiskurt.net/PDUniverse/PlaydateKit.git", branch: "main"),
         .package(url: "https://source.marquiskurt.net/PDUniverse/PDKUtils.git", branch: "main"),
     ],

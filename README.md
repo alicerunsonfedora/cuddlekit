@@ -133,6 +133,20 @@ While it could be theoretically possible to adopt the Codable protocol, it
 wouldn't be supported under embedded environments due to language subset
 restrictions. This might be improved in the future.
 
+### Building with Playdate
+
+To use CuddleKit with the [Playdate](https://play.date) game console, you
+will need to use the `Playdate` package trait instead of the `Embedded`
+trait. When building for a Playdate device, you will need to provide the
+following arguments to your build command to ensure that CKDL is located:
+
+```bash
+--extra-device-o-files-build-dirs CKDL.build/src
+```
+
+Refer to the `EmbeddedExample` project within this repository for more
+information.
+
 ## License
 
 CuddleKit is free and open-source software licensed under the MIT license.
