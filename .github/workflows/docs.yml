@@ -51,7 +51,7 @@ jobs:
             --hosting-base-path . \
             --output-path docs;
 
-          echo "<script>window.location.href += \"/documentation\"</script>" > docs/index.html;
+          echo "<script>window.location.href += \"/documentation/cuddlekit\"</script>" > docs/index.html;
 
           rm -rf /tmp/derivedData
       - name: Upload
