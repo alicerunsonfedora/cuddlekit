@@ -27,6 +27,23 @@ final class Game: PlaydateGame {
             players = []
         }
         self.controller = PlayerListViewController(players: players)
+
+        let foo = KDLDocument(kdlVersion: 2) {
+            KDLNode(named: "foobar98", arguments: [.untyped(.string("Hi there"))])
+        }
+        let writer = KDLWriter()
+        let fooString = writer.write(foo)
+        do {
+            let file = try File.open(path: "/Shared/foo.kdl", mode: .write)
+            fooString.withCString { ptr in
+                let buffer = UnsafeRawBufferPointer(start: ptr, count: fooString.utf8.count)
+                _ = try? file.write(buffer: buffer)
+            }
+            try file.close()
+        } catch {
+            print("Couldn't write file!")
+        }
+
     }
 
     func update() -> Bool {

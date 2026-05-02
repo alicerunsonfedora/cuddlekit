@@ -6,8 +6,7 @@ let package = Package(
     name: "CuddleKit",
     platforms: [.macOS(.v14), .iOS(.v17), .tvOS(.v16), .watchOS(.v9)],
     products: [
-        .library(name: "CuddleKit", targets: ["CuddleKit"]),
-        .library(name: "CKDL", targets: ["CKDL"])
+        .library(name: "CuddleKit", targets: ["CuddleKit"])
     ],
     traits: [
         .default(enabledTraits: []),

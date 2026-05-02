@@ -108,4 +108,8 @@ class KDLParser {
             }
         }
     #endif
+    
+    deinit {
+        kdl_destroy_parser(parser)
+    }
 }

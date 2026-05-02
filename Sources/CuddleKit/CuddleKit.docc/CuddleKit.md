@@ -25,6 +25,7 @@ serialize/deserialize existing structures.
 ### Reading and serializing KDL documents
 
 - ``KDLReader``
+- ``KDLWriter``
 - <doc:Serialization>
 
 ### Embedded support
