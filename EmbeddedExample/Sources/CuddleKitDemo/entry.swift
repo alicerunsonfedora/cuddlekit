@@ -28,20 +28,19 @@ final class Game: PlaydateGame {
         }
         self.controller = PlayerListViewController(players: players)
 
+        // Write some sample data into the Shared directory.
         let foo = KDLDocument(kdlVersion: 2) {
             KDLNode(named: "foobar98", arguments: [.untyped(.string("Hi there"))])
+            KDLNode("stats") {
+                KDLNode(named: "initialized", arguments: [.untyped(.boolean(true))])
+            }
         }
         let writer = KDLWriter()
         let fooString = writer.write(foo)
         do {
-            let file = try File.open(path: "/Shared/foo.kdl", mode: .write)
-            fooString.withCString { ptr in
-                let buffer = UnsafeRawBufferPointer(start: ptr, count: fooString.utf8.count)
-                _ = try? file.write(buffer: buffer)
-            }
-            try file.close()
+            try fooString.write(to: "/Shared/foo.kdl")
         } catch {
-            print("Couldn't write file!")
+            print("Couldn't write sample file!")
         }
 
     }
