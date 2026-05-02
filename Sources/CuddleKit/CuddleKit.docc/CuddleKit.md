@@ -2,7 +2,7 @@
 
 @Metadata {
     @PageColor(red)
-    @PageImage(source: "CuddleKitLogo", purpose: icon)
+    @PageImage(source: "CuddleKitLogo_1x", purpose: icon)
 }
 
 Manipulate types represented by the Cuddly Document Language (KDL).
