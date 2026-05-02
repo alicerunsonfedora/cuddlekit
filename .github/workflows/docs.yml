@@ -47,13 +47,13 @@ jobs:
             -skipMacroValidation;
 
           $(xcrun -f docc -toolchain "swift latest") process-archive \
-            transform-for-static-hosting /tmp/docc/CuddleKit.doccarchive \
+            transform-for-static-hosting /tmp/derivedData/Build/Products/Release/CuddleKit.doccarchive \
             --hosting-base-path . \
             --output-path docs;
 
           echo "<script>window.location.href += \"/documentation\"</script>" > docs/index.html;
 
-          rm -rf /tmp/derivedData /tmp/docc
+          rm -rf /tmp/derivedData
       - name: Upload
         uses: actions/upload-pages-artifact@v3
         with:
