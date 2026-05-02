@@ -1,0 +1,61 @@
+name: Deploy Documentation
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  DeployDocs:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Install Swift Toolchain"
+        uses: finnvoor/swiftly-action@main
+      - name: "Install Playdate SDK"
+        uses: finnvoor/playdatesdk-action@main
+      - name: Select Xcode
+        run: |
+          sudo xcode-select -s '/Applications/Xcode_26.2.app'
+      - name: Build
+        run: |
+          #!/bin/sh
+
+          set -e
+          set -o pipefail
+
+          mkdir -p /tmp/derivedData /tmp/docc
+
+          xcodebuild docbuild -scheme CuddleKit \
+            -configuration Release \
+            -derivedDataPath /tmp/derivedData \
+            -destination 'platform=macOS' \
+            -toolchain "swift latest" \
+            -skipPackagePluginValidation \
+            -skipMacroValidation;
+
+          $(xcrun -f docc -toolchain "swift latest") process-archive \
+            transform-for-static-hosting /tmp/docc/CuddleKit.doccarchive \
+            --hosting-base-path . \
+            --output-path docs;
+
+          echo "<script>window.location.href += \"/documentation\"</script>" > docs/index.html;
+
+          rm -rf /tmp/derivedData /tmp/docc
+      - name: Upload
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "docs"
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
