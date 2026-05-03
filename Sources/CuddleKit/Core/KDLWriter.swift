@@ -57,9 +57,11 @@ public class KDLWriter {
             for node in document.nodes {
                 writeNode(node)
             }
-            let buffer = kdl_get_emitter_buffer(writer)
+            var buffer = kdl_get_emitter_buffer(writer)
+            let annot = kdl_clone_str(&buffer)
+            let kdlString = kdl_str(data: annot.data, len: annot.len)
             kdl_emit_end(writer)
-            return String(kdlString: buffer)
+            return String(kdlString: kdlString)
         }
     }
 
@@ -69,7 +71,9 @@ public class KDLWriter {
 
     func writeNode(_ node: KDLNode) {
         node.name.withCString { ptr in
-            let kdlString = kdl_str_from_cstr(ptr)
+            var kdlStr = kdl_str_from_cstr(ptr)
+            let annot = kdl_clone_str(&kdlStr)
+            let kdlString = kdl_str(data: annot.data, len: annot.len)
             kdl_emit_node(writer, kdlString)
         }
         for argument in node.arguments {
@@ -81,8 +85,10 @@ public class KDLWriter {
             var kdlValue = kdl_value(value)
             let keyString = String(key)
             keyString.withCString { ptr in
-                let name = kdl_str_from_cstr(ptr)
-                kdl_emit_property(writer, name, &kdlValue)
+                var kdlStr = kdl_str_from_cstr(ptr)
+                let annot = kdl_clone_str(&kdlStr)
+                let kdlString = kdl_str(data: annot.data, len: annot.len)
+                kdl_emit_property(writer, kdlString, &kdlValue)
             }
         }
 

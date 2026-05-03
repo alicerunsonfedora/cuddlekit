@@ -81,7 +81,9 @@ extension kdl_value {
         switch kdlValue {
         case .typed(let typedValue):
             typedValue.annotation.withCString { ptr in
-                kdlAnnotation = kdl_str_from_cstr(ptr)
+                var kdlStr = kdl_str_from_cstr(ptr)
+                let annot = kdl_clone_str(&kdlStr)
+                kdlAnnotation = kdl_str(data: annot.data, len: annot.len)
             }
             (kdlValueType, applesauce) = Self.getUntypedValue(typedValue.value)
         case .untyped(let untypedValue):
@@ -99,7 +101,9 @@ extension kdl_value {
         case .string(let stringValue):
             kdlValueType = KDL_TYPE_STRING
             stringValue.withCString { ptr in
-                let kdlString = kdl_str_from_cstr(ptr)
+                var kdlStr = kdl_str_from_cstr(ptr)
+                let annot = kdl_clone_str(&kdlStr)
+                let kdlString = kdl_str(data: annot.data, len: annot.len)
                 applesauce = .init(string: kdlString)
             }
         case .number(.integer(let intValue)):
@@ -111,7 +115,9 @@ extension kdl_value {
         case .number(.stringRepresentable(let repr)):
             kdlValueType = KDL_TYPE_NUMBER
             repr.withCString { ptr in
-                let kdlReprString = kdl_str_from_cstr(repr)
+                var kdlStr = kdl_str_from_cstr(ptr)
+                let annot = kdl_clone_str(&kdlStr)
+                let kdlReprString = kdl_str(data: annot.data, len: annot.len)
                 applesauce = .init(
                     number: .init(type: KDL_NUMBER_TYPE_STRING_ENCODED, .init(string: kdlReprString))
                 )

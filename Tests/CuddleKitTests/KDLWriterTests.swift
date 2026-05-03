@@ -46,4 +46,13 @@ struct KDLWriterTests {
                 """
         )
     }
+
+    @Test func writeDocumentWithTypedValue() async throws {
+        let tree = KDLDocument(kdlVersion: 2) {
+            KDLNode(named: "foo", .typed(KDLTypedValue(annotation: "u8", value: 10)))
+        }
+        let writer = KDLWriter()
+        let result = writer.write(tree)
+        #expect(result == "foo (u8)10")
+    }
 }
